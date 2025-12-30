@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Test</title>
+</head>
+<body>
+    <h1>WebSocket Client</h1>
+    <input id="msg" placeholder="Type message..." />
+    <button onclick="sendMessage()">Send</button>
+    <pre id="output"></pre>
+
+    <script>
+        const ws = new WebSocket("ws://localhost:8000/web/ws");
+        const output = document.getElementById("output");
+
+        ws.onopen = () => output.textContent += "✅ Connected\n";
+        ws.onmessage = (event) => output.textContent += "📩 " + event.data + "\n";
+        ws.onclose = () => output.textContent += "❌ Connection closed\n";
+
+        function sendMessage() {
+            const msg = document.getElementById("msg").value;
+            ws.send(msg);
+        }
+    </script>
+</body>
+</html>

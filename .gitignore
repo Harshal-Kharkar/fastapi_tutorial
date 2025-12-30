@@ -1,0 +1,51 @@
+Yes 👍 — **ignoring `./venv` is correct**, but you can (and usually should) write it a bit more simply in `.gitignore`.
+
+### Recommended `.gitignore` entry
+
+```gitignore
+venv/
+```
+
+### Why this is better than `./venv`
+
+* Git treats paths as **relative by default**
+* `venv/` works regardless of where Git is run from
+* It’s the common convention used in most Python projects
+
+### Typical Python `.gitignore` additions (recommended)
+
+Since this is a FastAPI project, you’ll probably want these too:
+
+```gitignore
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# Database
+*.db
+
+# Logs
+*.log
+
+# Celery
+celerybeat-schedule
+```
+
+### Important note
+
+If `venv` was already committed before adding it to `.gitignore`, you’ll need to remove it from Git tracking once:
+
+```powershell
+git rm -r --cached venv
+git commit -m "Remove venv from repository"
+```
+
+✅ After that, it will stay ignored.
+
+If you want, I can generate a **complete `.gitignore` tailored exactly to FastAPI + Celery**.
