@@ -3,7 +3,7 @@ from routers import (items,users,websocket,on_event,
                      contextlib,path_parameters,Query_paramters
                      ,Request_body,cookie,auth2,security_tool,
                         jwt_hassing,jwt_token,depends,database,pgadmin,
-                        Background_task
+                        Background_task,sse
                      )
 from celery_test.run_celery import Router 
 import time
@@ -73,6 +73,7 @@ app.include_router(depends.Router)
 app.include_router(database.Router)
 # app.include_router(pgadmin.Router)
 app.include_router(Background_task.Router)
+app.include_router(sse.Router)
 
 app.include_router(Router)
 
